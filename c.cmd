@@ -1,0 +1,1 @@
+gcc -ansi -W -Wall -pedantic *.c -o ./a3tests/rsort
