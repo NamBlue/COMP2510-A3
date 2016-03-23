@@ -1,9 +1,11 @@
-#include "headers/struct.h"
 #include "headers/records.h"
 
 /*
 Gets and validates a record input from stdin and stores it to record_list,
 ignores invalid inputs until EOF is reached.
+First and last names must be strictly less than 20 characters to be valid.
+Score must be a integer between 0 - 100 inclusive to be valid.
+-assumptions: each line inputted is less than 256 characters
 */
 void input_record(record_list *list) {
     char input[LINESIZE];
@@ -62,12 +64,18 @@ int check_alloc(record_list *list) {
         }
         list->data = tmp;
         list->nalloc += BLOCK;
+        #ifdef DEBUG
+            fprintf(stderr, "%s\n", "#");
+        #endif
     }
     list->data[list->nused] = malloc(sizeof(record));
     if (list->data[list->nused] == 0) {
         fprintf(stderr, "Request for memory failed for list.data[%lu]", list->nused);
         return 2;
     }
+    #ifdef DEBUG
+        fprintf(stderr, "%s\n", "%");
+    #endif
     return 0;
 }
 
@@ -91,6 +99,12 @@ void free_memory(record_list *list) {
     
     for (i = 0; i < list->nused; i++) {
         free(list->data[i]);
+        #ifdef DEBUG
+            fprintf(stderr, "%s\n", "@");
+        #endif
     }
     free(list->data);
+    #ifdef DEBUG
+        fprintf(stderr, "%s\n", "@");
+    #endif
 }

@@ -1,5 +1,5 @@
 #include "headers/cmp.h"
-#include "headers/struct.h"
+#include "headers/records.h"
 
 /*
 Sorts by name in ascending order

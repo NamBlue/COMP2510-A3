@@ -23,6 +23,7 @@ rsort +s -n
 e.g invalid arguments:
 rsort +s -s
 rsort +n -n
+rsort +n -s -n
 
 rsort -s +n sorts in descending order of scores; if two or more records have the same score, they are
 then sorted in ascending order of their names.
